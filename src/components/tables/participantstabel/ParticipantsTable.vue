@@ -4,16 +4,17 @@
     <h1>Toimunud üritused</h1>
     <table class="table table-hover">
       <PastEventsTableHeader/>
-      <PastEventsTabelBody/>
+      <PastEventsTableBody/>
     </table>
   </div>
 </template>
 
 <script>
 import PastEventsTableHeader from "./PastEventsTableHeader.vue";
-import PastEventsTabelBody from "./PastEventsTabelBody.vue";
+import PastEventsTableBody from "./PastEventsTableBody.vue";
+
 export default {
-  name: "FutureEventsTable",
-  components: {PastEventsTableHeader, PastEventsTabelBody },
+  name: "PastEventsTable",
+  components: { PastEventsTableHeader, PastEventsTableBody },
 }
 </script>
