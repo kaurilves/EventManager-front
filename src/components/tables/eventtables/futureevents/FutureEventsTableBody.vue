@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         findALLFutureEvents: function () {
-            this.$http.get("http://localhost:5500/events/future", {
+            this.$http.get("/events/future", {
             }
             ).then(response => {
                 console.log(response.data)
@@ -39,7 +39,7 @@ export default {
             })
         },
         deleteEvent: function (eventId) {
-            this.$http.delete("http://localhost:5500/events", {
+            this.$http.delete("/events", {
                 params:{
                     eventId: eventId
                 }
