@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomeView'
+import AddEventView from '../views/AddEventView'
+import EventView from '../views/EventView'
+import ParticipantView from '../views/ParticipantView'
 
 Vue.use(VueRouter)
 
@@ -10,6 +13,22 @@ const routes = [
     name: 'homeView',
     component: HomeView
   },
+  {
+    path: '/addevent',
+    name: 'addEventView',
+    component: AddEventView
+  },
+  {
+    path: '/event',
+    name: 'eventView',
+    component: EventView
+  },
+  {
+    path: '/participant',
+    name: 'participantView',
+    component: ParticipantView
+  },
+  
   {
     path: '/about',
     name: 'about',
