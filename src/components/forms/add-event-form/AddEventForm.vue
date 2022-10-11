@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Ürituse lisamine</h1>
     <form>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Ürituse nimi</label>
@@ -12,7 +11,7 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Toimumisaeg</label>
         <div class="col-sm-2">
-          <input class="form-control" v-model="eventCreate.date" placeholder="pp.kk.aaaa hh:mm">
+          <input class="form-control" v-model="eventCreate.eventDate" placeholder="pp.kk.aaaa hh:mm">
         </div>
       </div>
 
@@ -28,8 +27,8 @@
           <input class="form-control" v-model="eventCreate.additionalInfo">
         </div>
       </div>
-      <button style="margin: 5px" class="btn btn-outline-dark" v-on:click="navigateToSearchSenderOrders">TAGASI</button>
-      <button style="margin: 5px" class="btn btn-outline-dark" v-on:click="createNewEvent">LISA</button>
+      <button style="margin: 5px" class="btn btn-outline-dark" v-on:click="navigateToHomeView()">TAGASI</button>
+      <button style="margin: 5px" class="btn btn-outline-dark" v-on:click="createEvent()">LISA</button>
     </form>
   </div>
 </template>
@@ -42,8 +41,8 @@ export default {
     return {
       eventCreate: {
         name: '',
-        date: '',
         address: '',
+        eventDate: '',
         additionalInfo: '',
       }
 
@@ -51,18 +50,15 @@ export default {
   },
   methods: {
     createEvent: function () {
-      this.$http.post("/event", this.eventCreate).then(response => {
-         console.log(response.data)
+      this.$http.post("/events/create", this.eventCreate).then(response => {
         this.eventCreate = response.data
-        this.toHomeView()
+        this.navigateToHomeView()
+        console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     },
-    createNewEvent: function () {
-      this.createEvent()
-    },
-    toHomeView: function () {
+    navigateToHomeView: function () {
       this.$router.push({ name: 'homeView' })
     },
 

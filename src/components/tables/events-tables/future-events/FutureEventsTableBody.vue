@@ -10,7 +10,7 @@
                     v-on:click="toEventView(event.eventId)">Osavõtjad
                 </button>
                 <button type="button" style="margin: 5px" class="btn btn-outline-dark"
-                    v-on:click="deleteEvent(event.evenId)">
+                    v-on:click="deleteEvent(event.eventId)">
                     Kustuta
                 </button>
             </td>
@@ -22,7 +22,6 @@ export default {
     name: 'FutureEventsTableBody',
     data: function () {
         return {
-            eventId: 0,
             events: [{}],
 
         }
@@ -39,11 +38,7 @@ export default {
             })
         },
         deleteEvent: function (eventId) {
-            this.$http.delete("/events", {
-                params:{
-                    eventId: eventId
-                }
-            }
+            this.$http.delete("/events/delete/" + eventId
             ).then(response => {
                 console.log(response.data)
                 this.events = response.data
@@ -54,7 +49,7 @@ export default {
         toEventView: function (eventId) {
             this.$router.push({ name: 'eventView', query: { eventId: eventId } })
         },
-        
+
     },
     mounted() {
         this.findALLFutureEvents();
